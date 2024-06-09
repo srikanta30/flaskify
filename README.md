@@ -1,53 +1,74 @@
-Flask and MongoDB Task
+# Flaskify
 
-Overview:
-Your task is to build a web application using Flask as the backend framework and MongoDB as the database. The application should allow users to manage a collection of ToDos, and you are required to implement JWT token validation using middleware.
+This is a Flask application designed to manage Todos and user authentication.
 
-Requirements:
+## Instructions to Run
 
-Setup:
-● Initialize a new Flask project.
-● Configure the project to connect to a MongoDB database.
-● Implement user authentication using JWT (JSON Web Tokens).
+To run this Flask application, you can follow these steps:
 
-Data Model:
-● Define a MongoDB schema for an item with attributes such as id, name,
-description, and created_at. API Endpoints:
-● Implement RESTful API endpoints for the following operations:
-● Create a new item
-● Retrieve a list of all items
-● Retrieve a specific item by ID
-● Update an existing item
-● Delete an item
+### 1. Clone the Repository
 
-Middleware - JWT Token Validation:
-● Implement a middleware function to check the validity of the JWT token for
-secured routes.
-● Apply the middleware to the API endpoints, ensuring that only authenticated
-users can perform CRUD operations. Validation:
-● Enhance input validation to ensure the correctness and security of data.
-● Validate the JWT token payload for necessary information. Documentation:
-● Provide clear documentation on how to run the application locally, authenticate using JWT, and interact with the API endpoints.
+First, clone this repository to your local machine:
 
-Evaluation Criteria:
-● Code Quality:
-● Clean and well-organized code.
-● Adherence to Python and Flask coding standards.
-● Database Interaction:
-● Proper integration with MongoDB.
-● Effective use of MongoDB queries.
-● API Design:
-● RESTful design principles.
-● Proper error handling.
+```bash
+git clone https://github.com/srikanta30/flaskify.git
+```
 
-● Middleware Implementation:
-● Correct implementation of JWT token validation middleware.
-● Secure handling of authenticated routes.
-● Validation:
-● Effective input and token payload validation.
+### 2. Install Docker
 
-Submission:
-● Create a new repository for your work.
-● Commit your code regularly with meaningful commit messages.
-● Provide a comprehensive README.md file with instructions on setting up, running
-the application, JWT authentication, and interacting with the API.
+Ensure you have Docker installed on your machine. You can download and install Docker Desktop from [Docker's official website](https://www.docker.com/products/docker-desktop).
+
+### 3. Build Docker Image
+
+Navigate to the project directory and build the Docker image using the provided Dockerfile:
+
+```bash
+cd your-repository
+docker build -t flaskify .
+```
+
+### 4. Run Docker Container
+
+Once the Docker image is built, you can run the Docker container:
+
+```bash
+docker run -d -p 8000:8000 --name flaskify flaskify
+```
+
+### 5. Access the Application
+
+You can now access the Flask application at `http://localhost:8000`.
+
+## Routes
+
+- `GET /todos`: Retrieve all todos.
+- `POST /todos`: Create a new todo.
+- `GET /todos/<todo_id>`: Retrieve a specific todo by ID.
+- `PUT /todos/<todo_id>`: Update a specific todo by ID.
+- `DELETE /todos/<todo_id>`: Delete a specific todo by ID.
+- `POST /register`: Register a new user.
+- `POST /login`: Login with user credentials.
+
+### Swagger Documentation
+
+After running the Flask application, you can access the Swagger documentation by navigating to the following URL in your web browser:
+
+```
+http://localhost:8000/api/docs/
+```
+
+This URL will open up the Swagger UI, allowing you to interactively explore and test the API endpoints. Swagger provides a user-friendly interface for understanding the API's functionality and testing different requests.
+
+Feel free to explore the various endpoints and experiment with different requests using the Swagger documentation.
+
+## Environment Variables
+
+The following environment variables can be configured:
+
+- `FLASK_ENV`: Set to `"development"` for development environment.
+- `PORT`: Port on which the application will run. Default is `8000`.
+
+## Additional Notes
+
+- This application uses MongoDB for data storage. Ensure you have MongoDB installed and running.
+- You may need to update `.env` file with appropriate configurations, see the `.env.example` file to see how the .env file should be.

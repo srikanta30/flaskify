@@ -1,0 +1,15 @@
+version: '3.8'
+services:    
+  flaskify:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    container_name: flaskify
+    environment:
+      - FLASK_ENV=development
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
